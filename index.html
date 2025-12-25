@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Professional Restaurant Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .hero-carousel {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        .card-3d:hover {
+            transform: rotateY(5deg) rotateX(5deg) translateZ(10px);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .navbar-glass {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4ecdc4);
+            background-size: 400% 400%;
+            -webkit-background-clip: Text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 navbar-glass">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="heading-font text-2xl font-bold gradient-text">
+                    <i class="fas fa-utensils mr-2"></i>Luxury Dining
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link hover:text-yellow-400 transition-colors">Home</a>
+                    <a href="#about" class="nav-link hover:text-yellow-400 transition-colors">About</a>
+                    <a href="#menu" class="nav-link hover:text-yellow-400 transition-colors">Menu</a>
+                    <a href="#services" class="nav-link hover:text-yellow-400 transition-colors">Services</a>
+                    <a href="#price" class="nav-link hover:text-yellow-400 transition-colors">Pricing</a>
+                    <a href="#contact" class="nav-link hover:text-yellow-400 transition-colors">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-white">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-90">
+            <div class="px-6 py-4 space-y-4">
+                <a href="#home" class="block nav-link hover:text-yellow-400">Home</a>
+                <a href="#about" class="block nav-link hover:text-yellow-400">About</a>
+                <a href="#menu" class="block nav-link hover:text-yellow-400">Menu</a>
+                <a href="#services" class="block nav-link hover:text-yellow-400">Services</a>
+                <a href="#price" class="block nav-link hover:text-yellow-400">Pricing</a>
+                <a href="#contact" class="block nav-link hover:text-yellow-400">Contact</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section with Carousel -->
+    <section id="home" class="hero-carousel h-screen relative parallax">
+        <div class="hero-slide active"
+            style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+        </div>
+        <div class="hero-slide"
+            style="background-image: url('https://images.unsplash.com/photo-1578474846511-04ba529f0b88?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80');">
+        </div>
+        <div class="hero-slide"
+            style="background-image: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80');">
+        </div>
+
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <div class="text-center animate-float">
+                <h1 class="heading-font text-6xl md:text-8xl font-bold mb-6 text-shadow">
+                    <span class="gradient-text">Luxury</span><br>
+                    <span class="text-white">Dining Experience</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-shadow">Discover the finest cuisine crafted with passion and
+                    perfection</p>
+                <a href="#menu"><button
+                    class="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-8 py-4 rounded-full font-semibold text-lg hover:scale-105 transition-transform shadow-lg">
+                    <i class="fas fa-utensils mr-2"></i>Explore Menu
+                </button></a>
+            </div>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="heading-font text-5xl font-bold mb-4 gradient-text">About Our Restaurant</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    A culinary journey that transcends ordinary dining experiences
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h3 class="heading-font text-3xl font-bold text-yellow-400">Our Story</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Welcome to Luxury Dining, where culinary artistry meets exceptional service. Founded in 2010,
+                        our restaurant has been a beacon of fine dining excellence, combining traditional cooking
+                        techniques with modern innovation.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed">
+                        Our world-class chefs bring decades of experience from renowned kitchens around the globe,
+                        ensuring every dish is a masterpiece. We source the finest ingredients from local farms and
+                        international markets to create flavors that tell a story.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed">
+                        With over 5000 satisfied customers, 15 international awards, and a team of 50 dedicated
+                        professionals, we continue to set new standards in the culinary world. Our commitment to
+                        excellence has made us a destination for food enthusiasts from around the world.
+                    </p>
+
+                    <div class="grid grid-cols-3 gap-6 mt-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-yellow-400">15+</div>
+                            <div class="text-gray-300">Awards Won</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-yellow-400">5000+</div>
+                            <div class="text-gray-300">Happy Customers</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-yellow-400">12+</div>
+                            <div class="text-gray-300">Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Restaurant Interior" class="rounded-lg card-3d">
+                    <img src="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Chef Cooking" class="rounded-lg card-3d mt-8">
+                    <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Food Presentation" class="rounded-lg card-3d -mt-8">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Dining Room" class="rounded-lg card-3d">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="heading-font text-5xl font-bold mb-4 gradient-text">Our Exquisite Menu</h2>
+                <p class="text-xl text-gray-300">Carefully crafted dishes to delight your senses</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Appetizers -->
+                <div class="bg-gray-800 rounded-lg p-6 card-3d">
+                    <h3 class="heading-font text-2xl font-bold text-yellow-400 mb-6 text-center">Appetizers</h3>
+                    <div class="space-y-4">
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold">Truffle Bruschetta</h4>
+                                <span class="text-yellow-400">$18</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">Artisan bread with truffle oil, fresh tomatoes, and basil
+                            </p>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold">Pan-Seared Scallops</h4>
+                                <span class="text-yellow-400">$24</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">Fresh Atlantic scallops with cauliflower puree</p>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold">Duck Confit Sliders</h4>
+                                <span class="text-yellow-400">$22</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">Three mini sliders with duck confit and arugula</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold">Wagyu Beef Tartare</h4>
+                                <span class="text-yellow-400">$32</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">Premium wagyu beef with quail egg and truffle</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Main Courses -->
+                <div class="bg-gray-800 rounded-lg p-6 card-3d">
+                    <h3 class="heading-font text-2xl font-bold text-yellow-400 mb-6 text-center">Main Courses</h3>
+                    <div class="space-y-4">
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold">Grilled Lobster</h4>
+                                <span class="text-yellow-400">$48</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">Maine lobster with drawn butter and seasonal vegetables</p>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold">Wagyu Ribeye</h4>
+                                <span class="text-yellow-400">$85</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">12oz A5 wagyu ribeye with roasted bone marrow</p>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold">Pan-Seared Salmon</h4>
+                                <span class="text-yellow-400">$36</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">Atlantic salmon with lemon butter and asparagus</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold">Duck Breast</h4>
+                                <span class="text-yellow-400">$42</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">Roasted duck breast with cherry gastrique</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Desserts -->
+                <div class="bg-gray-800 rounded-lg p-6 card-3d">
+                    <h3 class="heading-font text-2xl font-bold text-yellow-400 mb-6 text-center">Desserts</h3>
+                    <div class="space-y-4">
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold">Chocolate Soufflé</h4>
+                                <span class="text-yellow-400">$16</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">Dark chocolate soufflé with vanilla ice cream</p>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold">Tiramisu</h4>
+                                <span class="text-yellow-400">$14</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">Classic Italian tiramisu with espresso</p>
+                        </div>
+                        <div class="border-b border-gray-700 pb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold">Crème Brûlée</h4>
+                                <span class="text-yellow-400">$15</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">Vanilla bean crème brûlée with caramelized sugar</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="font-semibold">Seasonal Fruit Tart</h4>
+                                <span class="text-yellow-400">$13</span>
+                            </div>
+                            <p class="text-gray-400 text-sm">Fresh seasonal fruits with pastry cream</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="heading-font text-5xl font-bold mb-4 gradient-text">Our Services</h2>
+                <p class="text-xl text-gray-300">Comprehensive dining solutions for every occasion</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-8 bg-gray-900 rounded-lg card-3d">
+                    <div class="text-6xl mb-6 text-yellow-400">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="heading-font text-2xl font-bold mb-4">Fine Dining</h3>
+                    <p class="text-gray-300">Experience world-class cuisine in an elegant atmosphere with impeccable
+                        service and attention to detail.</p>
+                </div>
+
+                <div class="text-center p-8 bg-gray-900 rounded-lg card-3d">
+                    <div class="text-6xl mb-6 text-yellow-400">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
+                    <h3 class="heading-font text-2xl font-bold mb-4">Private Events</h3>
+                    <p class="text-gray-300">Host your special occasions in our private dining rooms with customized
+                        menus and dedicated staff.</p>
+                </div>
+
+                <div class="text-center p-8 bg-gray-900 rounded-lg card-3d">
+                    <div class="text-6xl mb-6 text-yellow-400">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 class="heading-font text-2xl font-bold mb-4">Catering</h3>
+                    <p class="text-gray-300">Professional catering services for corporate events, weddings, and private
+                        parties with delivery options.</p>
+                </div>
+
+                <div class="text-center p-8 bg-gray-900 rounded-lg card-3d">
+                    <div class="text-6xl mb-6 text-yellow-400">
+                        <i class="fas fa-wine-glass"></i>
+                    </div>
+                    <h3 class="heading-font text-2xl font-bold mb-4">Wine Pairing</h3>
+                    <p class="text-gray-300">Expert wine selection and pairing recommendations from our extensive cellar
+                        of premium vintages.</p>
+                </div>
+
+                <div class="text-center p-8 bg-gray-900 rounded-lg card-3d">
+                    <div class="text-6xl mb-6 text-yellow-400">
+                        <i class="fas fa-chef-hat"></i>
+                    </div>
+                    <h3 class="heading-font text-2xl font-bold mb-4">Cooking Classes</h3>
+                    <p class="text-gray-300">Learn from our master chefs with hands-on cooking classes and culinary
+                        workshops.</p>
+                </div>
+
+                <div class="text-center p-8 bg-gray-900 rounded-lg card-3d">
+                    <div class="text-6xl mb-6 text-yellow-400">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="heading-font text-2xl font-bold mb-4">Online Ordering</h3>
+                    <p class="text-gray-300">Convenient online ordering system with delivery and pickup options for our
+                        signature dishes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Pricing Section -->
+    <section id="price" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="heading-font text-5xl font-bold mb-4 gradient-text">Pricing Plans</h2>
+                <p class="text-xl text-gray-300">Choose the perfect dining experience for you</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Basic Plan -->
+                <div class="bg-gray-800 rounded-lg p-8 card-3d border-2 border-gray-700">
+                    <div class="text-center mb-8">
+                        <h3 class="heading-font text-2xl font-bold mb-4">Basic Experience</h3>
+                        <div class="text-4xl font-bold text-yellow-400 mb-2">$45</div>
+                        <p class="text-gray-400">per person</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>3-course meal</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>Welcome drink</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>Standard seating
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>Professional
+                            service</li>
+                    </ul>
+                    <button class="w-full bg-gray-700 hover:bg-gray-600 py-3 rounded-lg transition-colors">Select
+                        Plan</button>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="bg-gray-800 rounded-lg p-8 card-3d border-2 border-yellow-400 relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-yellow-400 text-black px-4 py-2 rounded-full text-sm font-semibold">Most
+                            Popular</span>
+                    </div>
+                    <div class="text-center mb-8">
+                        <h3 class="heading-font text-2xl font-bold mb-4">Premium Experience</h3>
+                        <div class="text-4xl font-bold text-yellow-400 mb-2">$75</div>
+                        <p class="text-gray-400">per person</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>5-course tasting
+                            menu</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>Premium wine
+                            pairing</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>Premium seating
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>Dedicated
+                            sommelier</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>Chef's table
+                            option</li>
+                    </ul>
+                    <button
+                        class="w-full bg-yellow-400 hover:bg-yellow-500 text-black py-3 rounded-lg transition-colors font-semibold">Select
+                        Plan</button>
+                </div>
+
+                <!-- Luxury Plan -->
+                <div class="bg-gray-800 rounded-lg p-8 card-3d border-2 border-gray-700">
+                    <div class="text-center mb-8">
+                        <h3 class="heading-font text-2xl font-bold mb-4">Luxury Experience</h3>
+                        <div class="text-4xl font-bold text-yellow-400 mb-2">$125</div>
+                        <p class="text-gray-400">per person</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>7-course
+                            degustation menu</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>Premium wine &
+                            cocktail pairings</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>Private dining
+                            room</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>Personal chef
+                            service</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>Complimentary
+                            valet parking</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>Exclusive
+                            amenities</li>
+                    </ul>
+                    <button
+                        class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black py-3 rounded-lg transition-colors font-semibold">Select
+                        Plan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="heading-font text-5xl font-bold mb-4 gradient-text">Contact Us</h2>
+                <p class="text-xl text-gray-300">Get in touch for reservations and inquiries</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="heading-font text-2xl font-bold mb-6 text-yellow-400">Get In Touch</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            <div class="text-2xl text-yellow-400 mr-4">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Address</h4>
+                                <p class="text-gray-300">123 Luxury Avenue, Fine Dining District, City 12345</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="text-2xl text-yellow-400 mr-4">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Phone</h4>
+                                <p class="text-gray-300">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="text-2xl text-yellow-400 mr-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Email</h4>
+                                <p class="text-gray-300">info@luxurydining.com</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="text-2xl text-yellow-400 mr-4">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Hours</h4>
+                                <p class="text-gray-300">
+                                    Mon-Thu: 5:00 PM - 10:00 PM<br>
+                                    Fri-Sat: 5:00 PM - 11:00 PM<br>
+                                    Sun: 5:00 PM - 9:00 PM
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Name</label>
+                            <input type="text"
+                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400"
+                                placeholder="Your Name">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email</label>
+                            <input type="email"
+                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400"
+                                placeholder="your@email.com">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Phone</label>
+                            <input type="tel"
+                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400"
+                                placeholder="Your Phone">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Message</label>
+                            <textarea rows="4"
+                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400"
+                                placeholder="Your Message"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black py-3 rounded-lg transition-colors font-semibold">
+                            <i class="fas fa-paper-plane mr-2"></i>Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-black py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="heading-font text-2xl font-bold gradient-text mb-4">
+                        <i class="fas fa-utensils mr-2"></i>Luxury Dining
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Experience the finest cuisine crafted with passion and excellence. Join us for an unforgettable
+                        culinary journey.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors text-2xl">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors text-2xl">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors text-2xl">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors text-2xl">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-yellow-400 transition-colors text-2xl">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="heading-font text-xl font-bold mb-4 text-yellow-400">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-yellow-400 transition-colors">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-yellow-400 transition-colors">About</a>
+                        </li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-yellow-400 transition-colors">Menu</a></li>
+                        <li><a href="#services"
+                                class="text-gray-400 hover:text-yellow-400 transition-colors">Services</a></li>
+                        <li><a href="#price" class="text-gray-400 hover:text-yellow-400 transition-colors">Pricing</a>
+                        </li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-yellow-400 transition-colors">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="heading-font text-xl font-bold mb-4 text-yellow-400">Contact Info</h4>
+                    <div class="space-y-2 text-gray-400">
+                        <p><i class="fas fa-map-marker-alt mr-2"></i>123 Luxury Avenue, Fine Dining District</p>
+                        <p><i class="fas fa-phone mr-2"></i>+1 (555) 123-4567</p>
+                        <p><i class="fas fa-envelope mr-2"></i>info@luxurydining.com</p>
+                    </div>
+
+                    <div class="mt-6">
+                        <h5 class="font-semibold mb-2 text-yellow-400">Newsletter</h5>
+                        <div class="flex">
+                            <input type="email" placeholder="Enter your email"
+                                class="bg-gray-800 border border-gray-700 rounded-l-lg px-4 py-2 flex-1 focus:outline-none focus:border-yellow-400">
+                            <button
+                                class="bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded-r-lg transition-colors">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400">
+                    &copy; 2024 Luxury Dining. All rights reserved. |
+                    <a href="#" class="hover:text-yellow-400 transition-colors">Privacy Policy</a> |
+                    <a href="#" class="hover:text-yellow-400 transition-colors">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Hero Carousel
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Navbar Background on Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-black');
+            } else {
+                nav.classList.remove('bg-black');
+            }
+        });
+
+        // Form Submission
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+        });
+
+        // Newsletter Subscription
+        document.querySelector('button[type="submit"]').addEventListener('click', (e) => {
+            if (e.target.closest('footer')) {
+                e.preventDefault();
+                alert('Thank you for subscribing to our newsletter!');
+            }
+        });
+
+        // Card 3D Effect
+        document.querySelectorAll('.card-3d').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'rotateY(5deg) rotateX(5deg) translateZ(10px)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateY(0deg) rotateX(0deg) translateZ(0px)';
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+
+</html>
